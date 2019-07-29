@@ -1,2 +1,2 @@
 # simple-native-audioplayer
-HTML native player with custom tracks
+HTML native audio player with custom tracks
