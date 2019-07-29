@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AudioPlayer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .player {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+
+            width: 70vw;
+            height: 10vh;
+
+            margin: 10px auto;
+        }
+
+        .player > * {
+            display: flex;
+            align-items: center;
+
+            height: 70px;
+        }
+
+        .file-selector {
+            display: flex;
+        }
+
+        #audioPlayerSelector {
+            margin: 20px auto;
+        }
+
+        input[type='file'] {
+            color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Simple Audio Player</h1>
+    <div class="player">
+        <h3 id="songTitle">Choose Track</h3>
+        <audio src="" id="player" controls>HTML 5 Not Supported!</audio>
+    </div>
+    <div class="file-selector">
+        <input type="file" name="" id="audioPlayerSelector" accept="audio/*" onchange="changeTrack()">
+    </div>
+
+
+    <script>
+        function changeTrack() {
+            let audioPlayerSelector = document.getElementById('audioPlayerSelector').files[0];
+            let player = document.getElementById('player');
+            let reader = new FileReader();
+
+            if (audioPlayerSelector) {
+                reader.readAsDataURL(audioPlayerSelector);
+            }
+
+            reader.onloadend = function () {
+                player.src = reader.result;
+                document.getElementById('songTitle').innerText = audioPlayerSelector.name;
+            }
+        }
+    </script>
+</body>
+</html>
